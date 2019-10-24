@@ -78,6 +78,7 @@ export default class TSFilter extends stream.Duplex {
 
     // aribts
     private _parser: stream.Transform = new aribts.TsStream();
+    private _TsChar: Object;
 
     // buffer
     private _packet: Buffer = Buffer.allocUnsafe(PACKET_SIZE);
@@ -117,6 +118,9 @@ export default class TSFilter extends stream.Duplex {
 
     // ReadableState in node/lib/_stream_readable.js
     private _readableState: any;
+
+    // charset option
+    private _useUnicode: boolean = _.config.server.useUnicode;
 
     constructor(options: StreamOptions) {
         super({
@@ -188,6 +192,12 @@ export default class TSFilter extends stream.Duplex {
         }
 
         ++status.streamCount.tsFilter;
+
+        if (_useUnicode) {
+            this._TsChar = aribts.TsWChar;
+        } else {
+            this._TsChar = aribts.TsChar;
+        }
     }
 
     _read(size: number) {
@@ -507,7 +517,7 @@ export default class TSFilter extends stream.Duplex {
             const m = service.descriptors.length;
             for (let j = 0; j < m; j++) {
                 if (service.descriptors[j].descriptor_tag === 0x48) {
-                    name = new aribts.TsChar(service.descriptors[j].service_name_char).decode();
+                    name = new this._TsChar(service.descriptors[j].service_name_char).decode();
                     type = service.descriptors[j].service_type;
                 }
 

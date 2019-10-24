@@ -21,7 +21,6 @@ import queue from "./queue";
 import ProgramItem from "./ProgramItem";
 const getProgramId = ProgramItem.getId;
 import * as aribts from "aribts";
-const TsChar = aribts.TsChar;
 const TsDate = aribts.TsDate;
 
 const STREAM_CONTENT = {
@@ -129,6 +128,7 @@ class EPG extends stream.Writable {
 
     private _epg: { [networkId: number]: { [serviceId: number]: { [eventId: number]: EventState } } } = {};
     private _epgGCInterval: number = 1000 * 60 * 15;
+    private _TsChar: Object;
 
     constructor() {
         super({
@@ -136,6 +136,11 @@ class EPG extends stream.Writable {
         });
 
         setTimeout(this._gc.bind(this), this._epgGCInterval);
+	if (_.config.server.useUnicode) {
+            this._TsChar = aribts.TsWChar;
+	} else {
+            this._TsChar = aribts.TsChar;
+        }
     }
 
     _write(eit: any, encoding: string, callback: Function) {
@@ -258,8 +263,8 @@ class EPG extends stream.Writable {
                         state.short.text_char = d.text_char;
 
                         state.program.update({
-                            name: new TsChar(d.event_name_char).decode(),
-                            description: new TsChar(d.text_char).decode()
+                            name: new this._TsChar(d.event_name_char).decode(),
+                            description: new this._TsChar(d.text_char).decode()
                         });
 
                         break;
@@ -295,7 +300,7 @@ class EPG extends stream.Writable {
                                 for (const desc of descs) {
                                     const key = desc.item_description_length === 0
                                                 ? current
-                                                : new TsChar(desc.item_description_char).decode();
+                                                : new this._TsChar(desc.item_description_char).decode();
                                     current = key;
 
                                     if (extended[key] === undefined) {
@@ -306,7 +311,7 @@ class EPG extends stream.Writable {
                                 }
                             }
                             for (const key of Object.keys(extended)) {
-                                extended[key] = new TsChar(extended[key]).decode();
+                                extended[key] = new this._TsChar(extended[key]).decode();
                             }
 
                             state.program.update({
@@ -420,7 +425,7 @@ class EPG extends stream.Writable {
                                     -1,
                                 episode: d.episode_number,
                                 lastEpisode: d.last_episode_number,
-                                name: new TsChar(d.series_name_char).decode()
+                                name: new this._TsChar(d.series_name_char).decode()
                             }
                         });
 

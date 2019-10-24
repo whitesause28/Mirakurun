@@ -2,3 +2,4 @@ logLevel: 3
 path: ~
 disableIPv6: true
 port: 41772
+useUnicode: true

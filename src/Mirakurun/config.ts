@@ -41,6 +41,9 @@ export interface Server {
     readonly programGCInterval?: number;
     readonly epgGatheringInterval?: number;
     readonly epgRetrievalTime?: number;
+
+    /** `true` to switch charset to Unicode */
+    readonly useUnicode?: boolean;
 }
 
 export interface Tuner {

@@ -25,6 +25,7 @@ eventEndTimeout: 1000 # integer (ms)
 programGCInterval: 900000 # integer (ms)
 epgGatheringInterval: 900000 # integer (ms)
 epgRetrievalTime: 600000 # integer (ms)
+useUnicode: false # boolean
 ```
 
 ## tuners.yml
