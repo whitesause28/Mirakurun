@@ -147,11 +147,11 @@ class EPG extends stream.Writable {
 
         const networkId = eit.original_network_id;
 
-        if (typeof this._epg[networkId] === "undefined") {
+        if (this._epg[networkId] === undefined) {
             this._epg[networkId] = {};
         }
 
-        if (typeof this._epg[networkId][eit.service_id] === "undefined") {
+        if (this._epg[networkId][eit.service_id] === undefined) {
             this._epg[networkId][eit.service_id] = {};
         }
 
@@ -162,7 +162,7 @@ class EPG extends stream.Writable {
             const e = eit.events[i];
             let state: EventState;
 
-            if (typeof service[e.event_id] === "undefined") {
+            if (service[e.event_id] === undefined) {
                 const id = getProgramId(networkId, eit.service_id, e.event_id);
                 let programItem = _.program.get(id);
                 if (!programItem) {
@@ -304,7 +304,7 @@ class EPG extends stream.Writable {
                                     current = key;
 
                                     if (extended[key] === undefined) {
-                                        extended[key] = new Buffer(desc.item_char);
+                                        extended[key] = Buffer.from(desc.item_char);
                                     } else {
                                         extended[key] = Buffer.concat([extended[key], desc.item_char]);
                                     }
@@ -447,7 +447,7 @@ class EPG extends stream.Writable {
 
                         state.group._raw = d._raw;
 
-                        if (typeof d.other_network_events === "undefined") {
+                        if (d.other_network_events === undefined) {
                             state.program.update({
                                 relatedItems: d.events.map(getRelatedProgramItem)
                             });
