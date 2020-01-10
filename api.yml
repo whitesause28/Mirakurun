@@ -405,8 +405,6 @@ definitions:
         type: integer
       epgRetrievalTime:
         type: integer
-      useUnicode:
-        type: boolean
 
   ConfigTuners:
     type: array
@@ -527,6 +525,8 @@ definitions:
         type: object
         properties:
           uncaughtException:
+            type: integer
+          unhandledRejection:
             type: integer
           bufferOverflow:
             type: integer

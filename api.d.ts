@@ -176,7 +176,6 @@ export interface ConfigServer {
     programGCInterval?: number;
     epgGatheringInterval?: number;
     epgRetrievalTime?: number;
-    useUnicode?: boolean;
 }
 
 export enum LogLevel {
@@ -250,6 +249,7 @@ export interface Status {
     };
     errorCount: {
         uncaughtException: number;
+        unhandledRejection: number;
         bufferOverflow: number;
         tunerDeviceRespawn: number;
     };
