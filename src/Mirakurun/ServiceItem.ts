@@ -1,5 +1,5 @@
 /*
-   Copyright 2016 Yuki KAN
+   Copyright 2016 kanreisa
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -96,11 +96,11 @@ export default class ServiceItem {
         }
     }
 
-    get logoData(): NodeBuffer {
+    get logoData(): Buffer {
         return Buffer.from(this._logoData, "base64");
     }
 
-    set logoData(logo: NodeBuffer) {
+    set logoData(logo: Buffer) {
 
         if (this._logoData !== logo.toString("base64")) {
             this._logoData = logo.toString("base64");

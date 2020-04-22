@@ -1,5 +1,5 @@
 /*
-   Copyright 2016 Yuki KAN
+   Copyright 2016 kanreisa
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ export const get: Operation = (req, res) => {
     req.setTimeout(1000 * 60 * 60, () => { return; });
     req.once("close", () => Event.removeListener(_listener));
 
-    Event.on(_listener);
+    Event.onEvent(_listener);
 
     function _listener(message: EventMessage) {
 

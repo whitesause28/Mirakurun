@@ -1,5 +1,5 @@
 /*
-   Copyright 2016 Yuki KAN
+   Copyright 2016 kanreisa
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -163,25 +163,25 @@ export default class Client {
         let operation: OpenAPIV2.OperationObject;
         for (path in this._docs.paths) {
             const p = this._docs.paths[path] as OpenAPIV2.PathItemObject;
-            if (p.post && p.post.operationId === operationId) {
+            if (p.post?.operationId === operationId) {
                 method = "POST";
                 parameters = [...p.parameters, ...(p.post.parameters || [])] as any;
                 operation = p.post;
                 break;
             }
-            if (p.get && p.get.operationId === operationId) {
+            if (p.get?.operationId === operationId) {
                 method = "GET";
                 parameters = [...p.parameters, ...(p.get.parameters || [])] as any;
                 operation = p.get;
                 break;
             }
-            if (p.put && p.put.operationId === operationId) {
+            if (p.put?.operationId === operationId) {
                 method = "PUT";
                 parameters = [...p.parameters, ...(p.put.parameters || [])] as any;
                 operation = p.put;
                 break;
             }
-            if (p.delete && p.delete.operationId === operationId) {
+            if (p.delete?.operationId === operationId) {
                 method = "DELETE";
                 parameters = [...p.parameters, ...(p.delete.parameters || [])] as any;
                 operation = p.delete;

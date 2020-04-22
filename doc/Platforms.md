@@ -2,13 +2,15 @@
 
 ## Overview
 
-**Bold** is the recommended. also, **Node.js** `^8.17.0 < 9 || ^10.15.0 < 11 || ^12.14.0 < 13` needed.
+**Bold** is the recommended. also, **Node.js** `^10.15.0 < 11 || ^12 || ^13` needed.
 
 * [**Linux**](#linux)
   * [PM2](http://pm2.keymetrics.io/) `>=2.4.0`
   * x86 / **x64** / ARMv7 / **ARMv8**
   * **Debian** / Ubuntu / CentOS / Gentoo
   * SystemV / OpenRC / **SystemD**
+* Docker on Linux (Testing)
+  * Docker Hub: [chinachu/mirakurun](https://hub.docker.com/r/chinachu/mirakurun)
 * [Win32](#win32) (Experimental)
   * [winser](https://github.com/jfromaniello/winser) `>=1.0.3`
   * Windows 10 RS3 `npm i winser@1.0.3 -g`
@@ -28,7 +30,7 @@
   * [Gentoo](https://nodejs.org/en/download/package-manager/#gentoo)
     * `emerge nodejs`
 * [nave](https://github.com/isaacs/nave)
-  * `sudo /path/to/nave.sh usemain 12.14.0`
+  * `sudo /path/to/nave.sh usemain 12`
 
 ### Installing PM2
 

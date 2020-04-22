@@ -1,5 +1,5 @@
 /*
-   Copyright 2016 Yuki KAN
+   Copyright 2016 kanreisa
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -60,6 +60,10 @@ export default class Program {
     /** CAUTION: This getter method creates a new Array object every time. */
     get items(): ProgramItem[] {
         return Array.from(this._itemIterator);
+    }
+
+    private get _itemIterator(): IterableIterator<ProgramItem> {
+        return this._itemMap.values();
     }
 
     add(item: ProgramItem, firstAdd: boolean = false): void {
@@ -180,10 +184,6 @@ export default class Program {
     save(): void {
         clearTimeout(this._saveTimerId);
         this._saveTimerId = setTimeout(() => this._save(), 3000);
-    }
-
-    private get _itemIterator(): IterableIterator<ProgramItem> {
-        return this._itemMap.values();
     }
 
     private _load(): void {
