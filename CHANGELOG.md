@@ -2,6 +2,17 @@
 
 see [Commit Logs](https://github.com/Chinachu/Mirakurun/commits/master) to check all.
 
+## 2.15.2 (2020-04-26)
+
+- **package**: update node version to `^10.15.0 < 11 || ^12 || ^14`.
+  - note: dropped node@13 support.
+- **docker**: update base image to `node:14.0.0-slim`.
+
+## 2.15.1 (2020-04-26)
+
+- nothing changed about server and clients.
+- **munin-plugins**: fix wrong Shebang (CRLF to LF). [#66](https://github.com/Chinachu/Mirakurun/issues/66)
+
 ## 2.15.0 (2020-04-19)
 
 - **package**: update node version to `^10.15.0 < 11 || ^12 || ^13`.
